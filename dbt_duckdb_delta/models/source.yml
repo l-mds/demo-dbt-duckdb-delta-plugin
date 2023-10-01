@@ -1,0 +1,28 @@
+
+
+version: 2
+sources:
+  - name: delta_source
+    schema: main
+    config:
+      plugin: delta
+    tables: 
+    - name: customer
+      meta:
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/customer"
+        pruning_filter: "c_mktsegment = 'BUILDING' and c_nationkey=15" #partition prunning if partition given in filter
+        pruning_projection: "c_mktsegment"
+    
+    - name: lineitem
+      meta:
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/lineitem"
+        #you can take a parameter from var https://docs.getdbt.com/docs/build/project-variables
+        #dbt run --select lineitem_raw --vars '{"lineitem_date": "2016-06-02"}'
+        pruning_filter: "l_receiptdate = '{{ var('lineitem_date') }}'" 
+        # pruning_projection: "c_mktsegment"
+    
+    - name: orders
+      meta:
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/orders"
+        # pruning_filter: "c_mktsegment = '{{ var('lineitem_date') }}' and c_nationkey=15" #you can take a parameter from commandline
+        # pruning_projection: "c_mktsegment"
