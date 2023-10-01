@@ -1,27 +1,33 @@
-
-
 version: 2
 sources:
   - name: delta_source
     schema: main
     config:
       plugin: delta
+
     tables: 
     - name: customer
       meta:
-        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/customer"
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/customer"
         pruning_filter: "c_mktsegment = 'BUILDING' and c_nationkey=15" #partition prunning if partition given in filter
         pruning_projection: "c_mktsegment"
+        as_of_version: 2 # https://delta-io.github.io/delta-rs/python/usage.html#time-travel
+        as_of_datetime: "2021-11-04 00:05:23.283+00:00" #crazy datetime https://delta-io.github.io/delta-rs/python/api_reference.html#deltalake.table.DeltaTable.load_with_datetime
+        # storage: #TODO can this be used as an anchor 
+        # #   #azure_storage_account_name: "test"
+        # #   azure_storage_account_key: ""
     
     - name: lineitem
       meta:
-        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/lineitem"
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/lineitem"
         #you can take a parameter from var https://docs.getdbt.com/docs/build/project-variables
         #dbt run --select lineitem_raw --vars '{"lineitem_date": "2016-06-02"}'
+        #this can be good in the combination with dagster
         pruning_filter: "l_receiptdate = '{{ var('lineitem_date') }}'" 
         
     
     - name: orders
       meta:
-        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/sf1/delta/orders"
+        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/orders"
         # pruning_projection: "*"
+
