@@ -1,0 +1,9 @@
+dbt_duckdb_delta:
+  outputs:
+    dev:
+      type: duckdb
+
+      plugin: 
+        - module: sqlalchemy
+        
+  target: dev
