@@ -1,1 +1,2 @@
-dbt-duckdb
+dbt-duckdb @ git+https://github.com/milicevica23/dbt-duckdb@
+

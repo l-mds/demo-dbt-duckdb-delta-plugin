@@ -1,3 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT * FROM {{source("delta_source","lineitem")}}
+SELECT l_partkey,l_linestatus FROM {{source("delta_source","lineitem")}}
+where l_linestatus = 'O'
