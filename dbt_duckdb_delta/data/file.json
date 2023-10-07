@@ -3,10 +3,10 @@
 ││    Query Profiling Information    ││
 │└───────────────────────────────────┘│
 └─────────────────────────────────────┘
-/* {"app": "dbt", "dbt_version": "1.6.3", "profile_name": "dbt_duckdb_delta", "target_name": "dev", "node_id": "model.dbt_duckdb_delta.customer_raw"} */                    create  table       "dbt"."main"."customer_raw__dbt_tmp"        as (         SELECT c_custkey, c_nationkey  FROM "dbt"."main"."customer" where c_nationkey = 15     );      
+/* {"app": "dbt", "dbt_version": "1.6.3", "profile_name": "dbt_duckdb_delta", "target_name": "dev", "node_id": "model.dbt_duckdb_delta.orders_raw"} */                    create  table       "dbt"."main"."orders_raw__dbt_tmp"        as (         SELECT * FROM "dbt"."main"."orders" --where l_linestatus = 'O'     );      
 ┌─────────────────────────────────────┐
 │┌───────────────────────────────────┐│
-││        Total Time: 0.0035s        ││
+││        Total Time: 0.0017s        ││
 │└───────────────────────────────────┘│
 └─────────────────────────────────────┘
 ┌───────────────────────────┐
@@ -18,14 +18,12 @@
 ┌─────────────┴─────────────┐
 │        ARROW_SCAN         │
 │   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
-│         c_custkey         │
-│        c_nationkey        │
-│   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
-│Filters: c_nationkey=15 AND│
-│   c_nationkey IS NOT NULL │
+│        r_regionkey        │
+│           r_name          │
+│         r_comment         │
 │   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
 │           EC: 1           │
 │   ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─   │
-│            5921           │
+│             5             │
 │          (0.00s)          │
 └───────────────────────────┘                             

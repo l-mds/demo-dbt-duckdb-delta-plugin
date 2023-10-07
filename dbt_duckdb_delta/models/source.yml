@@ -11,18 +11,30 @@ sources:
         delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/customer"
         as_of_version: 2 # https://delta-io.github.io/delta-rs/python/usage.html#time-travel
         as_of_datetime: "2021-11-04 00:05:23.283+00:00" #crazy datetime https://delta-io.github.io/delta-rs/python/api_reference.html#deltalake.table.DeltaTable.load_with_datetime
-        # storage:
-        # #   #azure_storage_account_name: "test"
-        # #   azure_storage_account_key: ""
     
     - name: lineitem
       meta:
         delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/lineitem"
         #you can take a parameter from var https://docs.getdbt.com/docs/build/project-variables
-        #dbt run --select lineitem_raw --vars '{"lineitem_date": "2016-06-02"}'
     
+    ##AZURE CONNECTION
+    ##NOTE: to use environment variables you have to write it in upercase and it has to start with azure e.g AZURE_STORAGE_ACCOUNT_KEY=<key>
+    ##because delta-rs filters ENV variables with *AZURE_*  
+    ##following documentations has all possible keys https://docs.rs/object_store/latest/object_store/azure/enum.AzureConfigKey.html#variants
+    ##but be aware that it has to start with *AZURE_*
+
+    ##If you provide storage_options directly it will overwrite per table env variable
     - name: orders
       meta:
-        delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/orders"
-        # pruning_projection: "*"
+        delta_table_path: "abfss://test@<storage-account-name>.dfs.core.windows.net/region"
+        storage_options: 
+          azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY') }}" #https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
+
+    ## You can also exchange parts of the path strings 
+    ##dbt -d run -select orders_raw --vars '{"storage_name": "coronadashboardsa"}
+    # - name: orders
+    #   meta:
+    #     delta_table_path: "abfss://test@{{ var('storage_name') }}.dfs.core.windows.net/region"
+    #     storage_options: 
+    #       azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY_2') }}"
 
