@@ -29,12 +29,12 @@ sources:
     ##following documentations has all possible keys https://docs.rs/object_store/latest/object_store/azure/enum.AzureConfigKey.html#variants
     ##but be aware that it has to start with *AZURE_*
 
-    ##If you provide storage_options directly it will overwrite per table env variable
+    #If you provide storage_options directly it will overwrite per table env variable
     - name: orders
       meta:
         delta_table_path: "abfss://test@<storage-account-name>.dfs.core.windows.net/region"
-        storage_options: 
-          azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY') }}" #https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
+        # storage_options: 
+        #   azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY') }}" #https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
 
     ## You can also exchange parts of the path strings 
     ##dbt -d run -select orders_raw --vars '{"storage_name": "<storage_name>"}
