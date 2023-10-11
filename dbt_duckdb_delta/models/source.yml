@@ -1,5 +1,11 @@
 version: 2
 sources:
+  - name: external_source
+    meta:
+      external_location: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/parquet/{name}.parquet"
+    tables:
+      - name: customer
+      - name: lineitem
   - name: delta_source
     schema: main
     config:
@@ -31,7 +37,7 @@ sources:
           azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY') }}" #https://docs.getdbt.com/reference/dbt-jinja-functions/env_var
 
     ## You can also exchange parts of the path strings 
-    ##dbt -d run -select orders_raw --vars '{"storage_name": "coronadashboardsa"}
+    ##dbt -d run -select orders_raw --vars '{"storage_name": "<storage_name>"}
     # - name: orders
     #   meta:
     #     delta_table_path: "abfss://test@{{ var('storage_name') }}.dfs.core.windows.net/region"

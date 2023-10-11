@@ -8,4 +8,19 @@ dbt_duckdb_delta:
       settings:
         enable_profiling: QUERY_TREE
         profile_output: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/file.json
+      extensions:
+        - parquet
+  target: dev
+test:
+  outputs:
+    dev:
+      type: duckdb
+      path: dev.duckdb
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: prod.duckdb
+      threads: 4
+
   target: dev
