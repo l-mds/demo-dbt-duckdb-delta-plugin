@@ -37,6 +37,6 @@ You can also setup other read options or read remote table from cloud providers.
 
 
 Note:
-* reltaion which is dependent on the delta table can't be materialized as **view**
+* relation which is dependent on the delta table can't be materialized as **view**
 * for more remote options you can see [deltalake package](https://delta-io.github.io/delta-rs/python/usage.html#loading-a-delta-table)
 
