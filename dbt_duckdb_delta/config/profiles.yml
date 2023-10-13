@@ -2,7 +2,7 @@ dbt_duckdb_delta:
   outputs:
     dev:
       type: duckdb
-      #path: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/dbt.duckdb
+      path: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/dbt.duckdb
       plugins: 
         - module: delta
       settings:
