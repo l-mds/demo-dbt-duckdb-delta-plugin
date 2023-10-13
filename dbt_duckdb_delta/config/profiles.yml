@@ -2,12 +2,10 @@ dbt_duckdb_delta:
   outputs:
     dev:
       type: duckdb
-      path: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/dbt.duckdb
+      #path: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/dbt.duckdb
       plugins: 
         - module: delta
       settings:
         enable_profiling: QUERY_TREE
         profile_output: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/file.json
-      extensions:
-        - parquet
   target: dev

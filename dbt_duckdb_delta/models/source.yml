@@ -1,22 +1,14 @@
 version: 2
 sources:
-  - name: external_source
-    meta:
-      external_location: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/parquet/{name}.parquet"
-    tables:
-      - name: customer
-      - name: lineitem
   - name: delta_source
-    schema: main
     config:
       plugin: delta
-
     tables: 
     - name: customer
       meta:
         delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/customer"
-        as_of_version: 2 # https://delta-io.github.io/delta-rs/python/usage.html#time-travel
-        as_of_datetime: "2021-11-04 00:05:23.283+00:00" #crazy datetime https://delta-io.github.io/delta-rs/python/api_reference.html#deltalake.table.DeltaTable.load_with_datetime
+        #as_of_version: 2 # https://delta-io.github.io/delta-rs/python/usage.html#time-travel
+        #as_of_datetime: "2021-11-04 00:05:23.283+00:00" #crazy datetime https://delta-io.github.io/delta-rs/python/api_reference.html#deltalake.table.DeltaTable.load_with_datetime
     
     - name: lineitem
       meta:
