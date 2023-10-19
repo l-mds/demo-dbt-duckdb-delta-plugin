@@ -3,6 +3,7 @@ sources:
   - name: delta_source
     config:
       plugin: delta
+      materialization: view
     tables: 
     - name: customer
       meta:
