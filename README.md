@@ -1,6 +1,8 @@
 # dbt-duckdb-delta-plugin-demo
 An example project for duckdb delta integration
 
+**To use predicate pushdown you have to setup materialization to be a view!**
+
 ## Usage and read delta table
 profiles.yml
 ````yaml
