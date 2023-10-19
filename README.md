@@ -19,6 +19,7 @@ sources:
   - name: delta_source
     config:
       plugin: delta
+      materialization: view #VERY IMPORTANT CONFIG TO PUSHDOWN PREDICATES
     tables: 
     - name: customer
       meta:
