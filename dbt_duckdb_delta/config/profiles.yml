@@ -7,5 +7,5 @@ dbt_duckdb_delta:
         - module: delta
       settings:
         enable_profiling: QUERY_TREE
-        profile_output: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/file.json
+        profile_output: /home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/query_plan
   target: dev

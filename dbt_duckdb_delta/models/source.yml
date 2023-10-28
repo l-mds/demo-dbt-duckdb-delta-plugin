@@ -3,7 +3,7 @@ sources:
   - name: delta_source
     config:
       plugin: delta
-      materialization: view
+      #materialization: view
     tables: 
     - name: customer
       meta:
@@ -36,4 +36,13 @@ sources:
     #     delta_table_path: "abfss://test@{{ var('storage_name') }}.dfs.core.windows.net/region"
     #     storage_options: 
     #       azure_storage_account_key: "{{ env_var('AZURE_STORAGE_ACCOUNT_KEY_2') }}"
-
+  - name: external_source
+    meta:
+      external_location: "read_csv_auto('{prefix}{file}')"
+      prefix: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/csv/"
+    tables:
+      - name: customer
+        meta:
+          #prefix: "override"
+          #external_location: "override/{prefix}{file}" # das würde auch funktionieren
+          file: "customer.csv"
