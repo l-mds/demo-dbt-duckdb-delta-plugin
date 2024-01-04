@@ -1,4 +1,4 @@
-# dbt-duckdb-delta-plugin-demo
+# demo-duckdb-delta-plugin
 An example project for duckdb delta integration
 
 **To use predicate pushdown you have to setup materialization to be a view!**
