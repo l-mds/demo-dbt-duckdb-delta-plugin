@@ -10,7 +10,9 @@ sources:
         delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/customer"
         #as_of_version: 2 # https://delta-io.github.io/delta-rs/python/usage.html#time-travel
         #as_of_datetime: "2021-11-04 00:05:23.283+00:00" #crazy datetime https://delta-io.github.io/delta-rs/python/api_reference.html#deltalake.table.DeltaTable.load_with_datetime
-    
+    - name: customer1
+      meta:
+        delta_table_path: "/home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/customer1"
     - name: lineitem
       meta:
         delta_table_path: "/home/aleks/git/my-projects/banchmark-utils/utils/sf1/delta/lineitem"
