@@ -1,6 +1,9 @@
 # demo-duckdb-delta-plugin
 An example project for duckdb delta integration
 
+**This project uses the latest development from delta plugin**
+The current PR is here https://github.com/duckdb/dbt-duckdb/pull/284
+
 **To use predicate pushdown you have to setup materialization to be a view!**
 
 ## Usage and read delta table

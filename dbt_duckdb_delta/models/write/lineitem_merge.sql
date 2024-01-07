@@ -1,5 +1,5 @@
 {{ config(
-    materialized='external_table',
+    materialized='external',
     plugin = 'delta',
     location = '/home/aleks/git/open-source/dbt-duckdb-delta-plugin-demo/dbt_duckdb_delta/data/delta_lineitem',
     mode = "merge", 
