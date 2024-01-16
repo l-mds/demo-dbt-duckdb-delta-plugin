@@ -4,7 +4,13 @@
 {{ config(
     materialized='external_table',
     plugin = 'delta',
-    location = 'abfss://test@alekstmp.dfs.core.windows.net/customer',
-    mode = "overwrite" 
+    location = 'abfss://test/customer',
+    mode = "overwrite",
+    storage_options = {
+        "account_name": "devstoreaccount1",
+        "account_key": "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==",
+        "endpoint": "http://127.0.0.1:10000/",
+        "use_emulator": "true"
+    }
 ) }}
 select * from {{ref('customer_raw')}} 
